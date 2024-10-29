@@ -33,16 +33,16 @@ const ActionButton = ({ testID, onPress, colorAccent, label }) => (
 
 const MaterialDialog = ({
   visible,
-  scrolled,
-  title,
-  titleColor,
-  colorAccent,
-  backgroundColor,
-  addPadding,
-  onOk,
-  onCancel,
-  okLabel,
-  cancelLabel,
+  scrolled = false,
+  title = undefined,
+  titleColor = colors.androidPrimaryTextColor,
+  colorAccent = colors.androidColorAccent,
+  backgroundColor = colors.background,
+  addPadding = true,
+  onOk = undefined,
+  onCancel = undefined,
+  okLabel = 'OK',
+  cancelLabel = 'CANCEL',
   children,
 }) => (
   <Modal
@@ -184,40 +184,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-MaterialDialog.propTypes = {
-  visible: PropTypes.bool.isRequired,
-  children: PropTypes.element.isRequired,
-  onCancel: PropTypes.func.isRequired,
-  onOk: PropTypes.func,
-  cancelLabel: PropTypes.string,
-  okLabel: PropTypes.string,
-  title: PropTypes.string,
-  titleColor: PropTypes.string,
-  backgroundColor: PropTypes.string,
-  colorAccent: PropTypes.string,
-  scrolled: PropTypes.bool,
-  addPadding: PropTypes.bool,
-};
-
-MaterialDialog.defaultProps = {
-  okLabel: 'OK',
-  cancelLabel: 'CANCEL',
-  title: undefined,
-  titleColor: colors.androidPrimaryTextColor,
-  backgroundColor: colors.background,
-  colorAccent: colors.androidColorAccent,
-  scrolled: false,
-  addPadding: true,
-  onOk: undefined,
-  onCancel: undefined,
-};
-
-ActionButton.propTypes = {
-  testID: PropTypes.string.isRequired,
-  colorAccent: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired,
-};
 
 export default MaterialDialog;
