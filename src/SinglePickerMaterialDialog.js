@@ -63,6 +63,7 @@ export default class SinglePickerMaterialDialog extends Component {
         title={this.props.title}
         titleColor={this.props.titleColor}
         colorAccent={this.props.colorAccent}
+        backgroundColor={this.props.backgroundColor}
         visible={this.props.visible}
         okLabel={this.props.okLabel}
         scrolled={this.props.scrolled}
@@ -110,6 +111,7 @@ SinglePickerMaterialDialog.propTypes = {
   title: PropTypes.string,
   titleColor: PropTypes.string,
   colorAccent: PropTypes.string,
+  backgroundColor: PropTypes.string,
   onCancel: PropTypes.func.isRequired,
   onOk: PropTypes.func.isRequired,
   cancelLabel: PropTypes.string,
@@ -122,6 +124,7 @@ SinglePickerMaterialDialog.defaultProps = {
   title: undefined,
   titleColor: undefined,
   colorAccent: colors.androidColorAccent,
+  backgroundColor: colors.white,
   cancelLabel: undefined,
   okLabel: undefined,
   scrolled: false,
