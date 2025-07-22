@@ -17,7 +17,7 @@ export default class SinglePickerMaterialDialog extends Component {
   constructor(props) {
     super(props);
 
-    const { items, selectedItem } = props;
+    const { items, selectedItem, itemStyle } = props;
 
     let selectedIndex;
     if (selectedItem != null) {
@@ -25,7 +25,7 @@ export default class SinglePickerMaterialDialog extends Component {
         item => item.value === selectedItem.value,
       );
     }
-    this.state = { selectedIndex };
+    this.state = { selectedIndex, itemStyle };
   }
 
   onPressItem(value) {
@@ -38,24 +38,27 @@ export default class SinglePickerMaterialDialog extends Component {
 
   keyExtractor = item => String(item.value);
 
-  renderItem = ({ item, index }) => (
-    <TouchableOpacity onPress={() => this.onPressItem(item.value)}>
-      <View style={styles.rowContainer}>
-        <View style={styles.iconContainer}>
-          <Icon
-            name={
-              index === this.state.selectedIndex
-                ? 'radio-button-checked'
-                : 'radio-button-unchecked'
-            }
-            color={this.props.colorAccent}
-            size={24}
-          />
+  renderItem = ({ item, index }) => {
+    const itemTextStyle = this.state.itemStyle.text || material.body1;
+    return (
+      <TouchableOpacity onPress={() => this.onPressItem(item.value)}>
+        <View style={styles.rowContainer}>
+          <View style={styles.iconContainer}>
+            <Icon
+              name={
+                index === this.state.selectedIndex
+                  ? "radio-button-checked"
+                  : "radio-button-unchecked"
+              }
+              color={this.props.colorAccent}
+              size={24}
+            />
+          </View>
+          <Text style={itemTextStyle}>{item.label}</Text>
         </View>
-        <Text style={material.subheading}>{item.label}</Text>
-      </View>
-    </TouchableOpacity>
-  );
+      </TouchableOpacity>
+    );
+  };
 
   render() {
     return (
@@ -117,6 +120,7 @@ SinglePickerMaterialDialog.propTypes = {
   cancelLabel: PropTypes.string,
   okLabel: PropTypes.string,
   scrolled: PropTypes.bool,
+  itemStyle: PropTypes.object,
 };
 
 SinglePickerMaterialDialog.defaultProps = {
@@ -128,4 +132,5 @@ SinglePickerMaterialDialog.defaultProps = {
   cancelLabel: undefined,
   okLabel: undefined,
   scrolled: false,
+  itemStyle: {},
 };
