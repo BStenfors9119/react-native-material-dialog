@@ -37,7 +37,7 @@ export default class MultiPickerMaterialDialog extends Component {
   keyExtractor = item => String(item.value);
 
   renderItem = ({ item }) => {
-    const itemTextStyle = this.state.itemStyle.text || material.subheading;
+    const itemTextStyle = this.props.itemStyle.text || material.subheading;
     return (
       <TouchableOpacity onPress={() => this.onPressItem(item.value)}>
         <View style={styles.rowContainer}>
