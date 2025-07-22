@@ -17,13 +17,13 @@ export default class MultiPickerMaterialDialog extends Component {
   constructor(props) {
     super(props);
 
-    const { selectedItems } = props;
+    const { selectedItems, itemStyle } = props;
     const selected = new Map();
     selectedItems.forEach((item) => {
       selected.set(item.value, true);
     });
 
-    this.state = { selected };
+    this.state = { selected, itemStyle };
   }
 
   onPressItem(value) {
@@ -36,24 +36,27 @@ export default class MultiPickerMaterialDialog extends Component {
 
   keyExtractor = item => String(item.value);
 
-  renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => this.onPressItem(item.value)}>
-      <View style={styles.rowContainer}>
-        <View style={styles.iconContainer}>
-          <Icon
-            name={
-              this.state.selected.get(item.value)
-                ? 'check-box'
-                : 'check-box-outline-blank'
-            }
-            color={this.props.colorAccent}
-            size={24}
-          />
+  renderItem = ({ item }) => {
+    const itemTextStyle = this.state.itemStyle.text || material.subheading;
+    return (
+      <TouchableOpacity onPress={() => this.onPressItem(item.value)}>
+        <View style={styles.rowContainer}>
+          <View style={styles.iconContainer}>
+            <Icon
+              name={
+                this.state.selected.get(item.value)
+                  ? "check-box"
+                  : "check-box-outline-blank"
+              }
+              color={this.props.colorAccent}
+              size={24}
+            />
+          </View>
+          <Text style={itemTextStyle}>{item.label}</Text>
         </View>
-        <Text style={material.subheading}>{item.label}</Text>
-      </View>
-    </TouchableOpacity>
-  );
+      </TouchableOpacity>
+    );
+  };
 
   render() {
     return (
@@ -112,6 +115,7 @@ MultiPickerMaterialDialog.propTypes = {
   cancelLabel: PropTypes.string,
   okLabel: PropTypes.string,
   scrolled: PropTypes.bool,
+  itemStyle: PropTypes.object,
 };
 
 MultiPickerMaterialDialog.defaultProps = {
@@ -123,4 +127,5 @@ MultiPickerMaterialDialog.defaultProps = {
   cancelLabel: undefined,
   okLabel: undefined,
   scrolled: false,
+  itemStyle: {},
 };
