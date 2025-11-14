@@ -17,13 +17,13 @@ export default class MultiPickerMaterialDialog extends Component {
   constructor(props) {
     super(props);
 
-    const { selectedItems } = props;
+    const { selectedItems, itemStyle } = props;
     const selected = new Map();
     selectedItems.forEach((item) => {
       selected.set(item.value, true);
     });
 
-    this.state = { selected };
+    this.state = { selected, itemStyle };
   }
 
   onPressItem(value) {
@@ -36,24 +36,27 @@ export default class MultiPickerMaterialDialog extends Component {
 
   keyExtractor = item => String(item.value);
 
-  renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => this.onPressItem(item.value)}>
-      <View style={styles.rowContainer}>
-        <View style={styles.iconContainer}>
-          <Icon
-            name={
-              this.state.selected.get(item.value)
-                ? 'check-box'
-                : 'check-box-outline-blank'
-            }
-            color={this.props.colorAccent}
-            size={24}
-          />
+  renderItem = ({ item }) => {
+    const itemTextStyle = this.props.itemStyle.text || material.subheading;
+    return (
+      <TouchableOpacity onPress={() => this.onPressItem(item.value)}>
+        <View style={styles.rowContainer}>
+          <View style={styles.iconContainer}>
+            <Icon
+              name={
+                this.state.selected.get(item.value)
+                  ? "check-box"
+                  : "check-box-outline-blank"
+              }
+              color={this.props.colorAccent}
+              size={24}
+            />
+          </View>
+          <Text style={itemTextStyle}>{item.label}</Text>
         </View>
-        <Text style={material.subheading}>{item.label}</Text>
-      </View>
-    </TouchableOpacity>
-  );
+      </TouchableOpacity>
+    );
+  };
 
   render() {
     return (
@@ -61,6 +64,7 @@ export default class MultiPickerMaterialDialog extends Component {
         title={this.props.title}
         titleColor={this.props.titleColor}
         colorAccent={this.props.colorAccent}
+        backgroundColor={this.props.backgroundColor}
         visible={this.props.visible}
         okLabel={this.props.okLabel}
         scrolled={this.props.scrolled}
@@ -105,11 +109,13 @@ MultiPickerMaterialDialog.propTypes = {
   title: PropTypes.string,
   titleColor: PropTypes.string,
   colorAccent: PropTypes.string,
+  backgroundColor: PropTypes.string,
   onCancel: PropTypes.func.isRequired,
   onOk: PropTypes.func.isRequired,
   cancelLabel: PropTypes.string,
   okLabel: PropTypes.string,
   scrolled: PropTypes.bool,
+  itemStyle: PropTypes.object,
 };
 
 MultiPickerMaterialDialog.defaultProps = {
@@ -117,7 +123,9 @@ MultiPickerMaterialDialog.defaultProps = {
   title: undefined,
   titleColor: undefined,
   colorAccent: colors.androidColorAccent,
+  backgroundColor: colors.white,
   cancelLabel: undefined,
   okLabel: undefined,
   scrolled: false,
+  itemStyle: {},
 };

@@ -17,7 +17,7 @@ export default class SinglePickerMaterialDialog extends Component {
   constructor(props) {
     super(props);
 
-    const { items, selectedItem } = props;
+    const { items, selectedItem, itemStyle } = props;
 
     let selectedIndex;
     if (selectedItem != null) {
@@ -25,7 +25,7 @@ export default class SinglePickerMaterialDialog extends Component {
         item => item.value === selectedItem.value,
       );
     }
-    this.state = { selectedIndex };
+    this.state = { selectedIndex, itemStyle };
   }
 
   onPressItem(value) {
@@ -38,24 +38,27 @@ export default class SinglePickerMaterialDialog extends Component {
 
   keyExtractor = item => String(item.value);
 
-  renderItem = ({ item, index }) => (
-    <TouchableOpacity onPress={() => this.onPressItem(item.value)}>
-      <View style={styles.rowContainer}>
-        <View style={styles.iconContainer}>
-          <Icon
-            name={
-              index === this.state.selectedIndex
-                ? 'radio-button-checked'
-                : 'radio-button-unchecked'
-            }
-            color={this.props.colorAccent}
-            size={24}
-          />
+  renderItem = ({ item, index }) => {
+    const itemTextStyle = this.state.itemStyle.text || material.body1;
+    return (
+      <TouchableOpacity onPress={() => this.onPressItem(item.value)}>
+        <View style={styles.rowContainer}>
+          <View style={styles.iconContainer}>
+            <Icon
+              name={
+                index === this.state.selectedIndex
+                  ? "radio-button-checked"
+                  : "radio-button-unchecked"
+              }
+              color={this.props.colorAccent}
+              size={24}
+            />
+          </View>
+          <Text style={itemTextStyle}>{item.label}</Text>
         </View>
-        <Text style={material.subheading}>{item.label}</Text>
-      </View>
-    </TouchableOpacity>
-  );
+      </TouchableOpacity>
+    );
+  };
 
   render() {
     return (
@@ -63,6 +66,7 @@ export default class SinglePickerMaterialDialog extends Component {
         title={this.props.title}
         titleColor={this.props.titleColor}
         colorAccent={this.props.colorAccent}
+        backgroundColor={this.props.backgroundColor}
         visible={this.props.visible}
         okLabel={this.props.okLabel}
         scrolled={this.props.scrolled}
@@ -110,11 +114,13 @@ SinglePickerMaterialDialog.propTypes = {
   title: PropTypes.string,
   titleColor: PropTypes.string,
   colorAccent: PropTypes.string,
+  backgroundColor: PropTypes.string,
   onCancel: PropTypes.func.isRequired,
   onOk: PropTypes.func.isRequired,
   cancelLabel: PropTypes.string,
   okLabel: PropTypes.string,
   scrolled: PropTypes.bool,
+  itemStyle: PropTypes.object,
 };
 
 SinglePickerMaterialDialog.defaultProps = {
@@ -122,7 +128,9 @@ SinglePickerMaterialDialog.defaultProps = {
   title: undefined,
   titleColor: undefined,
   colorAccent: colors.androidColorAccent,
+  backgroundColor: colors.white,
   cancelLabel: undefined,
   okLabel: undefined,
   scrolled: false,
+  itemStyle: {},
 };
