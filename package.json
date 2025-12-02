@@ -22,8 +22,8 @@
     "modal"
   ],
   "dependencies": {
-    "prop-types": "^15.5.10",
-    "react-native-typography": "^1.4.1",
+    "prop-types": "15.8.1",
+    "react-native-typography": "1.4.0",
     "react-native-vector-icons": "10.3.0"
   },
   "devDependencies": {
