@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   View,
+  ScrollView,
   Dimensions,
 } from 'react-native';
 import colors from './colors';
@@ -70,18 +71,11 @@ const MaterialDialog = ({
                     <Text style={[material.title, { color: titleColor }]}>{title}</Text>
                   </View>
                 ) : null}
-                <View
-                  style={
-                    scrolled
-                      ? [
-                        styles.contentContainerScrolled,
-                        addPadding && styles.contentContainerScrolledPadding,
-                      ]
-                      : [styles.contentContainer, addPadding && styles.contentContainerPadding]
-                  }
-                >
+                <ScrollView style={{
+                    height: "85%"
+                }}>
                   {children}
-                </View>
+                </ScrollView>
                 {onOk != null && onCancel != null ? (
                   <View
                     style={scrolled ? styles.actionsContainerScrolled : styles.actionsContainer}

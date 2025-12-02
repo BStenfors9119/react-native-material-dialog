@@ -47,8 +47,8 @@ export default class SinglePickerMaterialDialog extends Component {
             <Icon
               name={
                 index === this.state.selectedIndex
-                  ? "radio-button-checked"
-                  : "radio-button-unchecked"
+                  ? 'radio-button-checked'
+                  : 'radio-button-unchecked'
               }
               color={this.props.colorAccent}
               size={24}

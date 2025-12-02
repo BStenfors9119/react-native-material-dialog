@@ -45,8 +45,8 @@ export default class MultiPickerMaterialDialog extends Component {
             <Icon
               name={
                 this.state.selected.get(item.value)
-                  ? "check-box"
-                  : "check-box-outline-blank"
+                  ? 'check-box'
+                  : 'check-box-outline-blank'
               }
               color={this.props.colorAccent}
               size={24}

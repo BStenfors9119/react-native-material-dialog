@@ -97,6 +97,7 @@ interface MaterialDialogStatic extends Dialog {
    * Callback function fired when the confirm(ok) button is pressed
    * @param selected
    */
+  
   onOk?(): void;
 
   /**

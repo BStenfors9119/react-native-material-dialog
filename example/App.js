@@ -301,6 +301,7 @@ export default class App extends Component {
           title={"Pick some elements!"}
           items={SHORT_LIST.map((row, index) => ({ value: index, label: row }))}
           visible={this.state.multiPickerVisible}
+
           selectedItems={this.state.multiPickerSelectedItems}
           onCancel={() => this.setState({ multiPickerVisible: false })}
           onOk={result => {
