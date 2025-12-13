@@ -44,6 +44,7 @@ const MaterialDialog = ({
   okLabel = 'OK',
   cancelLabel = 'CANCEL',
   children,
+  contentHeight = (height * .85)
 }) => (
   <Modal
     animationType={'fade'}
@@ -71,7 +72,7 @@ const MaterialDialog = ({
                   </View>
                 ) : null}
                 <ScrollView style={{
-                    height: dialogHeight
+                    height: contentHeight
                 }}>
                   {children}
                 </ScrollView>
