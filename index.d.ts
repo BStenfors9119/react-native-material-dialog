@@ -85,6 +85,13 @@ interface Dialog {
    * Default is false
    */
   scrolled?: boolean;
+
+    /**
+     * Overrides the height of the content scroll view
+     *
+     * Default is window height * .85
+     */
+  contentHeight?: string
 }
 
 interface MaterialDialogStatic extends Dialog {
