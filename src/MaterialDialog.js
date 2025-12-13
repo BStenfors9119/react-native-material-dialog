@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   StyleSheet,
   Modal,
@@ -16,7 +15,7 @@ import colors from './colors';
 import { material } from 'react-native-typography';
 
 const { height } = Dimensions.get('window');
-
+const dialogHeight = height * .85;
 // TODO: Don't rely on Dimensions for the actions footer layout
 // TODO: Support custom actions
 // TODO: Stacked full-width buttons
@@ -72,7 +71,7 @@ const MaterialDialog = ({
                   </View>
                 ) : null}
                 <ScrollView style={{
-                    height: "85%"
+                    height: dialogHeight
                 }}>
                   {children}
                 </ScrollView>
