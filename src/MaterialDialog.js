@@ -44,7 +44,8 @@ const MaterialDialog = ({
   okLabel = 'OK',
   cancelLabel = 'CANCEL',
   children,
-  contentHeight = (height * .85)
+  contentHeight = (height * .85),
+  dialogBorder,
 }) => (
   <Modal
     animationType={'fade'}
@@ -55,7 +56,7 @@ const MaterialDialog = ({
     supportedOrientations={['portrait', 'landscape']}
   >
     <TouchableWithoutFeedback onPress={onCancel}>
-      <View style={styles.backgroundOverlay}>
+      <View style={[styles.backgroundOverlay, {...dialogBorder}]}>
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
           <View
             style={[
