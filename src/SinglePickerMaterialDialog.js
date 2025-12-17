@@ -50,7 +50,7 @@ export default class SinglePickerMaterialDialog extends Component {
     }
 
     if (index === this.state.selectedIndex) {
-        isSelected = true;
+      isSelected = true;
     }
 
     return (
@@ -97,7 +97,7 @@ export default class SinglePickerMaterialDialog extends Component {
       >
         <FlatList
           data={this.props.items}
-          extraData={this.state}
+          extraData={this.selectedItem}
           renderItem={this.renderItem}
           keyExtractor={this.keyExtractor}
         />
