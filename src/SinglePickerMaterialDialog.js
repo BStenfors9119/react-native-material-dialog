@@ -70,6 +70,8 @@ export default class SinglePickerMaterialDialog extends Component {
         visible={this.props.visible}
         okLabel={this.props.okLabel}
         scrolled={this.props.scrolled}
+        contentHeight={this.props.contentHeight}
+        dialogBorderStyle={this.props.dialogBorderStyle}
         onOk={() =>
           this.props.onOk({
             selectedItem: this.props.items[this.state.selectedIndex],
@@ -121,6 +123,8 @@ SinglePickerMaterialDialog.propTypes = {
   okLabel: PropTypes.string,
   scrolled: PropTypes.bool,
   itemStyle: PropTypes.object,
+  contentHeight: PropTypes.number,
+  dialogBorderStyle: PropTypes.object,
 };
 
 SinglePickerMaterialDialog.defaultProps = {
@@ -133,4 +137,6 @@ SinglePickerMaterialDialog.defaultProps = {
   okLabel: undefined,
   scrolled: false,
   itemStyle: {},
+  contentHeight: undefined,
+  dialogBorderStyle: {},
 };

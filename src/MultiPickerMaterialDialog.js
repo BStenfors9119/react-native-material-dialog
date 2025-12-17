@@ -68,6 +68,8 @@ export default class MultiPickerMaterialDialog extends Component {
         visible={this.props.visible}
         okLabel={this.props.okLabel}
         scrolled={this.props.scrolled}
+        contentHeight={this.props.contentHeight}
+        dialogBorderStyle={this.props.dialogBorderStyle}
         onOk={() =>
           this.props.onOk({
             selectedItems: this.props.items.filter(item =>
@@ -116,6 +118,8 @@ MultiPickerMaterialDialog.propTypes = {
   okLabel: PropTypes.string,
   scrolled: PropTypes.bool,
   itemStyle: PropTypes.object,
+  contentHeight: PropTypes.number,
+  dialogBorderStyle: PropTypes.object,
 };
 
 MultiPickerMaterialDialog.defaultProps = {
@@ -128,4 +132,6 @@ MultiPickerMaterialDialog.defaultProps = {
   okLabel: undefined,
   scrolled: false,
   itemStyle: {},
+  contentHeight: undefined,
+  dialogBorderStyle: {},
 };
