@@ -20,12 +20,13 @@ export default class SinglePickerMaterialDialog extends Component {
     const { items, selectedItem, itemStyle } = props;
 
     let selectedIndex;
+
     if (selectedItem != null) {
       selectedIndex = items.findIndex(
         item => item.value === selectedItem.value,
       );
     }
-    this.state = { selectedIndex, itemStyle };
+    this.state = { selectedIndex, itemStyle, selectedItem };
   }
 
   onPressItem(value) {
@@ -40,13 +41,25 @@ export default class SinglePickerMaterialDialog extends Component {
 
   renderItem = ({ item, index }) => {
     const itemTextStyle = this.state.itemStyle.text || material.body1;
+    let isSelected = false;
+    if (this.state.selectedItem != null) {
+      const selectedItem = this.state.selectedItem;
+      if (item.value === selectedItem.value) {
+        isSelected = true;
+      }
+    }
+
+    if (index === this.state.selectedIndex) {
+        isSelected = true;
+    }
+
     return (
       <TouchableOpacity onPress={() => this.onPressItem(item.value)}>
         <View style={styles.rowContainer}>
           <View style={styles.iconContainer}>
             <Icon
               name={
-                index === this.state.selectedIndex
+                  isSelected
                   ? 'radio-button-checked'
                   : 'radio-button-unchecked'
               }
