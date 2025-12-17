@@ -91,7 +91,14 @@ interface Dialog {
      *
      * Default is window height * .85
      */
-  contentHeight?: string
+  contentHeight?: string;
+
+    /**
+     * Allows for additional styling of the dialog border
+     *
+     * Default is blank
+     */
+  dialogBorderStyle?: object;
 }
 
 interface MaterialDialogStatic extends Dialog {
