@@ -63,11 +63,10 @@ const MaterialDialog = ({
               styles.modalContainer,
               (title != null || (addPadding && title == null)) && styles.modalContainerPadding,
               { backgroundColor },
-              { ...dialogBorderStyle },
             ]}
           >
             <TouchableWithoutFeedback>
-              <View>
+              <View style={dialogBorderStyle}>
                 {title != null ? (
                   <View style={scrolled ? styles.titleContainerScrolled : styles.titleContainer}>
                     <Text style={[material.title, { color: titleColor }]}>{title}</Text>
